@@ -13,7 +13,8 @@ from mysql_dao import *
 import settings
 import hashlib
 from selenium import webdriver
-import browser_cookie3
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import selenium
 
 
@@ -50,7 +51,9 @@ class FinancialAna:
             options.add_experimental_option("excludeSwitches", ["enable-automation"])
 
             # 设置中文
-            driver = webdriver.Chrome(executable_path='/Users/mac/Downloads/chromedriver', options=options)
+            # 新版驱动设置
+            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            # driver = webdriver.Chrome(executable_path='/Users/mac/Downloads/chromedriver', options=options)
             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
             # driver.maximize_window()
             driver.get(url=url)
@@ -86,7 +89,7 @@ class FinancialAna:
                 return None
 
             # 使用获得的cookies爬取
-            web_source = requests.get(url=url, headers=header, )
+            web_source = requests.get(url=url, headers=header, timeout=5)
 
             if web_source.status_code == 200 and web_source is not None:
                 # 解析最大的页数
@@ -153,6 +156,7 @@ class FinancialAna:
         def save_done_url(url):
             df_url = pd.DataFrame(data=[url], columns=['url'])
             insert_table('finished_url', df_url, {'PK': 'url'})
+            print('已入库')
 
         def parse_web():
             soup = BeautifulSoup(web_source.content.decode('gbk'), 'lxml')
