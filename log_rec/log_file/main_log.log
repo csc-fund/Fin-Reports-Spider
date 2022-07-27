@@ -1,0 +1,521 @@
+[INFO]2022-07-10 10:04:35,373 [main.py:18]: 把article的本地封面图片下载到新表article_img
+[INFO]2022-07-10 10:04:35,684 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+DELETE FROM article_imgs WHERE local_cover is NULL
+
+[INFO]2022-07-10 10:04:35,702 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:13------------]
+SELECT `biz` FROM `gzhs`
+
+[INFO]2022-07-10 10:04:35,768 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjA5NTMyOTMwMQ==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:35,861 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjI3Njc0NTk4MQ==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:35,968 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:1------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5MDIwNDEyMg==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:36,344 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:1------------]
+INSERT IGNORE INTO `article_imgs`(`id`,`mov`,`local_cover`) VALUES ('000031a03fb04e8aa7f7f20a1148e662',13,'cover_imgs/MjM5MDIwNDEyMg==/000031a03fb04e8aa7f7f20a1148e662.jpg')
+
+[INFO]2022-07-10 10:04:36,507 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5MTg0NDY1Mw==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:36,576 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5MTM3NTMwNA==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:36,834 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5MzMwNjM0MA==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:36,911 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5NDEzMTAwMA==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:36,936 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5NDU5NTM4MQ==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:37,173 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5NTE0ODc2Nw==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:37,412 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5NzQ5MTkyMA==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:37,453 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjM5OTExMjYwMA==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:37,645 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:1------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'MjY2NzgwMjU0MA==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:37,771 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:1------------]
+INSERT IGNORE INTO `article_imgs`(`id`,`mov`,`local_cover`) VALUES ('00007e4d16679df296198671f957ebfc',13,'cover_imgs/MjY2NzgwMjU0MA==/00007e4d16679df296198671f957ebfc.jpg')
+
+[INFO]2022-07-10 10:04:38,195 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT articles.biz,articles.id,articles.cover,articles.mov,article_imgs.local_cover FROM articles LEFT JOIN article_imgs ON articles.id = article_imgs.id WHERE article_imgs.local_cover IS NULL AND articles.biz = 'Mzg3NTA5MjkyNQ==' AND articles.p_date BETWEEN '0' AND '1654012800'
+
+[INFO]2022-07-10 10:04:40,097 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:1------------]
+SELECT COUNT(`id`),COUNT(*) FROM `article_imgs` WHERE `local_cover` IS NOT NULL AND `cover_neg` IS NULL
+
+[INFO]2022-07-10 10:04:40,443 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2------------]
+SELECT `id`,`local_cover` FROM `article_imgs` WHERE `local_cover` IS NOT NULL AND `cover_neg` IS NULL LIMIT 512
+
+[INFO]2022-07-10 10:04:40,460 [predict_sent.py:35]: loading no.0 image
+[INFO]2022-07-10 10:04:40,464 [predict_sent.py:35]: loading no.1 image
+[INFO]2022-07-10 10:04:44,167 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:04:44,186 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:9------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'article_imgs'
+
+[INFO]2022-07-10 10:04:44,204 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2------------]
+UPDATE `article_imgs` SET `cover_neg`=1.541389771375634e-08,`cover_pos`=1.0 WHERE `id`='00007e4d16679df296198671f957ebfc'
+
+[INFO]2022-07-10 10:04:44,485 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+SELECT `id`,`local_cover` FROM `article_imgs` WHERE `local_cover` IS NOT NULL AND `cover_neg` IS NULL LIMIT 512
+
+[WARNING]2022-07-10 10:04:44,488 [mysql_dao.py:371]: UPDATE article_imgs EMPTY DATAFRAME
+[INFO]2022-07-10 10:04:44,526 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`trade_date` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:04:45,030 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:04:45,049 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:7------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'info_date'
+
+[INFO]2022-07-10 10:04:45,329 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `info_date`(`nature_date`,`date_ts`,`nature_datetime`,`nature_datetime_ts`,`day_tradedate`,`night_tradedate`,`trade_date`) VALUES ('2022-06-01 00:00:00',1654041600,'2022-06-01 15:00:00',1654095600,'1970-01-01','NaT',20220601.0)
+
+[INFO]2022-07-10 10:04:45,662 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2878------------]
+SELECT `id`,`p_date` FROM `articles` WHERE `date_ts` IS NULL AND `p_date` IS NOT NULL
+
+[INFO]2022-07-10 10:04:45,715 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:3805------------]
+SELECT `date_ts`,`nature_datetime_ts`,`day_tradedate`,`night_tradedate` FROM `info_date`
+
+[WARNING]2022-07-10 10:04:45,835 [mysql_dao.py:371]: UPDATE articles EMPTY DATAFRAME
+[INFO]2022-07-10 10:04:46,785 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:04:46,803 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:16------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '000001.SH'
+
+[INFO]2022-07-10 10:04:47,046 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `000001.SH`(`ts_code`,`trade_date`,`close`,`open`,`high`,`low`,`pre_close`,`change`,`pct_chg`,`vol`,`amount`,`date_ts`,`date`,`weekday`) VALUES ('000001.SH','20220601',3182.1566,3179.6949,3190.6094,3160.0399,3186.4271,-4.2705,-0.134,365664432.0,402419941.2,1654041600,'2022-06-01',2)
+
+[INFO]2022-07-10 10:04:47,870 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:04:47,887 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:16------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '399001.SZ'
+
+[INFO]2022-07-10 10:04:48,113 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `399001.SZ`(`ts_code`,`trade_date`,`close`,`open`,`high`,`low`,`pre_close`,`change`,`pct_chg`,`vol`,`amount`,`date_ts`,`date`,`weekday`) VALUES ('399001.SZ','20220601',11551.2722,11507.4851,11592.4696,11467.8591,11527.6208,23.6514,0.2052,407924438.0,482675713.5,1654041600,'2022-06-01',2)
+
+[INFO]2022-07-10 10:04:48,894 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:04:48,911 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:16------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '000011.SH'
+
+[INFO]2022-07-10 10:04:49,268 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `000011.SH`(`ts_code`,`trade_date`,`close`,`open`,`high`,`low`,`pre_close`,`change`,`pct_chg`,`vol`,`amount`,`date_ts`,`date`,`weekday`) VALUES ('000011.SH','20220601',6638.6589,6637.6772,6651.9481,6610.5398,6643.9869,-5.328,-0.0802,320114341.0,72071006.4,1654041600,'2022-06-01',2)
+
+[INFO]2022-07-10 10:04:49,322 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT * FROM `000001.SH`
+
+[INFO]2022-07-10 10:04:49,358 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:04:49,369 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:16------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '000001.SH'
+
+[INFO]2022-07-10 10:04:53,705 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+UPDATE `000001.SH` SET `log_return`='0.011797172249585198',`log_return_l1`='-0.0013409563623491914' WHERE `date_ts`='1653955200'
+
+[INFO]2022-07-10 10:04:53,811 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT * FROM `399001.SZ`
+
+[INFO]2022-07-10 10:04:53,848 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:04:53,858 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:16------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '399001.SZ'
+
+[INFO]2022-07-10 10:04:58,807 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+UPDATE `399001.SZ` SET `log_return`='0.019030344993744768',`log_return_l1`='0.0020538247776917193' WHERE `date_ts`='1653955200'
+
+[INFO]2022-07-10 10:04:58,897 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT * FROM `000011.SH`
+
+[INFO]2022-07-10 10:04:58,939 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:04:58,958 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:16------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '000011.SH'
+
+[INFO]2022-07-10 10:05:03,995 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+UPDATE `000011.SH` SET `log_return`='0.010902094520520182',`log_return_l1`='-0.0008025507389086568' WHERE `date_ts`='1653955200'
+
+[INFO]2022-07-10 10:05:04,077 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:13------------]
+SELECT `biz`,`nickname` FROM `gzhs`
+
+[INFO]2022-07-10 10:05:30,431 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:6416------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjI3Njc0NTk4MQ==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:05:30,595 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:30,609 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:05:30,839 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjI3Njc0NTk4MQ==2022-06-01','21世纪经济报道','MjI3Njc0NTk4MQ==',1654041600,'2022-06-01',22,0.1622284056438712,0.8377715890909091,3,19,0.13636363636363635,0.8636363636363636)
+
+[INFO]2022-07-10 10:05:30,861 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:30,880 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:05:31,154 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjI3Njc0NTk4MQ==2022-06-01','21世纪经济报道','MjI3Njc0NTk4MQ==',1654041600,'2022-06-01',22,0.1622284056438712,0.8377715890909091,3,19,0.13636363636363635,0.8636363636363636)
+
+[INFO]2022-07-10 10:05:31,840 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:31,905 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:48,096 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:8229------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5MDIwNDEyMg==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:05:48,281 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:48,303 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:05:48,432 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5MDIwNDEyMg==2022-06-01','上海证券报','MjM5MDIwNDEyMg==',1654041600,'2022-06-01',38,0.169351757280032,0.8306482784210526,4,30,0.10526315789473684,0.7894736842105263)
+
+[INFO]2022-07-10 10:05:48,447 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:48,463 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:05:48,519 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5MDIwNDEyMg==2022-06-01','上海证券报','MjM5MDIwNDEyMg==',1654041600,'2022-06-01',38,0.169351757280032,0.8306482784210526,4,30,0.10526315789473684,0.7894736842105263)
+
+[INFO]2022-07-10 10:05:48,553 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:48,588 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:50,282 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:3189------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjA5NTMyOTMwMQ==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:05:50,394 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:50,415 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:05:50,497 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjA5NTMyOTMwMQ==2022-05-31','中国经营报','MjA5NTMyOTMwMQ==',1653955200,'2022-05-31',11,0.3730775217063636,0.6269224286936363,4,7,0.36363636363636365,0.6363636363636364)
+
+[INFO]2022-07-10 10:05:50,514 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:50,526 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:05:50,641 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjA5NTMyOTMwMQ==2022-05-31','中国经营报','MjA5NTMyOTMwMQ==',1653955200,'2022-05-31',11,0.3730775217063636,0.6269224286936363,4,7,0.36363636363636365,0.6363636363636364)
+
+[INFO]2022-07-10 10:05:50,671 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:50,706 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:53,447 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:29921------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5MzMwNjM0MA==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:05:54,141 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:54,155 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:05:54,380 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5MzMwNjM0MA==2022-06-01','中国证券报','MjM5MzMwNjM0MA==',1654041600,'2022-06-01',28,0.2583946707681121,0.7416053705714286,6,21,0.21428571428571427,0.75)
+
+[INFO]2022-07-10 10:05:54,392 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:54,403 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:05:54,676 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5MzMwNjM0MA==2022-06-01','中国证券报','MjM5MzMwNjM0MA==',1654041600,'2022-06-01',28,0.2583946707681121,0.7416053705714286,6,21,0.21428571428571427,0.75)
+
+[INFO]2022-07-10 10:05:54,708 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:54,756 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:57,392 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:28546------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5NzQ5MTkyMA==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:05:57,949 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:57,965 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:05:58,087 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5NzQ5MTkyMA==2022-06-01','央视财经','MjM5NzQ5MTkyMA==',1654041600,'2022-06-01',30,0.19262729229203465,0.8073727500000001,5,24,0.16666666666666666,0.8)
+
+[INFO]2022-07-10 10:05:58,097 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:05:58,108 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:05:58,243 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5NzQ5MTkyMA==2022-06-01','央视财经','MjM5NzQ5MTkyMA==',1654041600,'2022-06-01',30,0.19262729229203465,0.8073727500000001,5,24,0.16666666666666666,0.8)
+
+[INFO]2022-07-10 10:05:58,273 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:05:58,312 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:00,680 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:52146------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'Mzg3NTA5MjkyNQ==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:06:01,746 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:01,760 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:02,042 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('Mzg3NTA5MjkyNQ==2022-06-01','每日经济新闻','Mzg3NTA5MjkyNQ==',1654041600,'2022-06-01',22,0.24184613323205653,0.7581538388681818,5,16,0.22727272727272727,0.7272727272727273)
+
+[INFO]2022-07-10 10:06:02,053 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:02,063 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:06:02,328 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('Mzg3NTA5MjkyNQ==2022-06-01','每日经济新闻','Mzg3NTA5MjkyNQ==',1654041600,'2022-06-01',22,0.24184613323205653,0.7581538388681818,5,16,0.22727272727272727,0.7272727272727273)
+
+[INFO]2022-07-10 10:06:02,358 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:02,407 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:04,435 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:27993------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5NTE0ODc2Nw==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:06:05,058 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:05,076 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:05,309 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5NTE0ODc2Nw==2022-06-01','界面新闻','MjM5NTE0ODc2Nw==',1654041600,'2022-06-01',24,0.20850856430144513,0.7914914749999999,4,18,0.16666666666666666,0.75)
+
+[INFO]2022-07-10 10:06:05,319 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:05,329 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:06:05,557 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5NTE0ODc2Nw==2022-06-01','界面新闻','MjM5NTE0ODc2Nw==',1654041600,'2022-06-01',24,0.20850856430144513,0.7914914749999999,4,18,0.16666666666666666,0.75)
+
+[INFO]2022-07-10 10:06:05,614 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:05,660 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:06,068 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:4300------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5MTM3NTMwNA==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:06:06,186 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:06,200 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:06,251 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5MTM3NTMwNA==2022-06-01','第一财经','MjM5MTM3NTMwNA==',1654041600,'2022-06-01',16,0.13534560534122606,0.8646544137500001,2,14,0.125,0.875)
+
+[INFO]2022-07-10 10:06:06,261 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:06,272 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:06:06,315 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5MTM3NTMwNA==2022-06-01','第一财经','MjM5MTM3NTMwNA==',1654041600,'2022-06-01',16,0.13534560534122606,0.8646544137500001,2,14,0.125,0.875)
+
+[INFO]2022-07-10 10:06:06,344 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:06,381 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:06,577 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2801------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5OTExMjYwMA==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:06:06,673 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:06,684 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:06,735 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5OTExMjYwMA==2022-06-01','经济观察报','MjM5OTExMjYwMA==',1654041600,'2022-06-01',8,0.2592720818875,0.7407279611250001,2,6,0.25,0.75)
+
+[INFO]2022-07-10 10:06:06,746 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:06,757 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:06:06,806 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5OTExMjYwMA==2022-06-01','经济观察报','MjM5OTExMjYwMA==',1654041600,'2022-06-01',8,0.2592720818875,0.7407279611250001,2,6,0.25,0.75)
+
+[INFO]2022-07-10 10:06:06,835 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:06,868 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:07,152 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:4512------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5MTg0NDY1Mw==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:06:07,349 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:07,369 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:07,425 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5MTg0NDY1Mw==2022-06-01','证券日报之声','MjM5MTg0NDY1Mw==',1654041600,'2022-06-01',16,0.18574976917752545,0.8142503125,2,12,0.125,0.75)
+
+[INFO]2022-07-10 10:06:07,448 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:07,463 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:06:07,515 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5MTg0NDY1Mw==2022-06-01','证券日报之声','MjM5MTg0NDY1Mw==',1654041600,'2022-06-01',16,0.18574976917752545,0.8142503125,2,12,0.125,0.75)
+
+[INFO]2022-07-10 10:06:07,544 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:07,587 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:07,924 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:6086------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5NDEzMTAwMA==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:06:08,064 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:08,084 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:08,143 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5NDEzMTAwMA==2022-06-01','证券时报','MjM5NDEzMTAwMA==',1654041600,'2022-06-01',31,0.13398470573606205,0.8660153129032259,3,26,0.0967741935483871,0.8387096774193549)
+
+[INFO]2022-07-10 10:06:08,154 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:08,165 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:06:08,210 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5NDEzMTAwMA==2022-06-01','证券时报','MjM5NDEzMTAwMA==',1654041600,'2022-06-01',31,0.13398470573606205,0.8660153129032259,3,26,0.0967741935483871,0.8387096774193549)
+
+[INFO]2022-07-10 10:06:08,240 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:08,276 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:09,032 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:23806------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjY2NzgwMjU0MA==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:06:09,650 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:09,668 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:09,905 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjY2NzgwMjU0MA==2022-06-01','财新网','MjY2NzgwMjU0MA==',1654041600,'2022-06-01',13,0.2313639267312195,0.7686360465384615,3,10,0.23076923076923078,0.7692307692307693)
+
+[INFO]2022-07-10 10:06:09,917 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:09,927 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:06:10,186 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjY2NzgwMjU0MA==2022-06-01','财新网','MjY2NzgwMjU0MA==',1654041600,'2022-06-01',13,0.2313639267312195,0.7686360465384615,3,10,0.23076923076923078,0.7692307692307693)
+
+[INFO]2022-07-10 10:06:10,217 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:10,263 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:10,341 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2082------------]
+SELECT articles.id,articles.biz,articles.p_date,articles.t_date,article_imgs.mov,article_imgs.cover_neg,article_imgs.cover_pos FROM articles INNER JOIN article_imgs on articles.id = article_imgs.id WHERE articles.biz = 'MjM5NDU5NTM4MQ==' AND articles.t_date IS NOT NULL ORDER BY articles.p_date ASC
+
+[INFO]2022-07-10 10:06:10,421 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:10,454 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:10,515 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bytdate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`t_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5NDU5NTM4MQ==2022-06-01','财经杂志','MjM5NDU5NTM4MQ==',1654041600,'2022-06-01',6,0.1694460013146233,0.8305539733333333,1,5,0.16666666666666666,0.8333333333333334)
+
+[INFO]2022-07-10 10:06:10,540 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:10,558 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:12------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bydate'
+
+[INFO]2022-07-10 10:06:10,611 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+INSERT IGNORE INTO `gzhs_imgs_bydate`(`id_group_date`,`nick_name`,`biz`,`date_ts`,`p_date`,`article_count`,`c_negprob_mean`,`c_posprob_mean`,`c_neg_count`,`c_pos_count`,`c_neg_ratio`,`c_pos_ratio`) VALUES ('MjM5NDU5NTM4MQ==2022-06-01','财经杂志','MjM5NDU5NTM4MQ==',1654041600,'2022-06-01',6,0.1694460013146233,0.8305539733333333,1,5,0.16666666666666666,0.8333333333333334)
+
+[INFO]2022-07-10 10:06:10,641 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:10,675 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:2528------------]
+SELECT `date_ts`,`ts_code`,`trade_date`,`vol`,`log_return`,`log_return`,`weekday` FROM `399300.SZ`
+
+[INFO]2022-07-10 10:06:10,747 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:11815------------]
+SELECT `c_neg_ratio`,`id_group_date` FROM `gzhs_imgs_bytdate`
+
+[INFO]2022-07-10 10:06:10,764 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:15------------]
+SHOW TABLES
+
+[INFO]2022-07-10 10:06:10,781 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:17------------]
+SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'gzhs_imgs_bytdate'
+
+[INFO]2022-07-10 10:06:11,619 [mysql_dao.py:76]: [------------执行SQL ----> 记录条数:0------------]
+UPDATE `gzhs_imgs_bytdate` SET `c_neg_ratio_L1`=0.16,`c_neg_ratio_L2`=0.173913,`c_neg_ratio_L3`=0.0909091,`c_neg_ratio_L4`=0.125,`c_neg_ratio_L5`=0.173913 WHERE `id_group_date`='Mzg3NTA5MjkyNQ==2022-06-01'
+
