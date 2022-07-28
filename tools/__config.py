@@ -6,7 +6,7 @@
 # @Note      :None
 
 
-LOG_PATH = '/Users/mac/PycharmProjects/Google-V3/log_rec/log_file/'
+# LOG_PATH = 'C:\Users\Administrator\PycharmProjects\10jqka-requests\log_rec\log_file\'""
 
 DEBUG_MODE = False
 

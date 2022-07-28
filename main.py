@@ -32,6 +32,7 @@ class FinancialAna:
 
     # 按照栏目爬取
     def board_crawl(self):
+
         # 生成时间序列
         def get_date_list():
             date_list = pd.date_range(start='20040301', end='20220301', freq='3M').tolist()
@@ -74,6 +75,7 @@ class FinancialAna:
 
             # 查询要爬取的url是否完成
             if url in select_table('finished_url', ['url'])['url'].tolist() and self.MAX_PAGE != 0:
+
                 return None
             # 降低速度
             time.sleep(random.random() * 5)  # 设置延时
@@ -112,6 +114,7 @@ class FinancialAna:
         def get_board():
             for board in self.board:
 
+
                 # 在日期中循环
                 for date in get_date_list():
                     # 初始化栏目的最大页数
@@ -121,6 +124,7 @@ class FinancialAna:
                     try:
                         get_request(self.BASE_URl.format(date=date, board=board, page=1))
                     except Exception as e:
+                        print(e)
                         continue
 
                     # 更新页码后解析剩余的页
@@ -132,6 +136,8 @@ class FinancialAna:
                         try:
                             re = get_request(url)
                         except Exception as e:
+                            print(e)
+
                             continue
 
                         # 如果不是状态错误,已经完成,就开始解析
@@ -139,7 +145,8 @@ class FinancialAna:
                             try:
                                 self.items_return(board, re, url)
                                 # print(url)
-                            except AssertionError:
+                            except AssertionError as e:
+                                print(e)
                                 continue
 
                         else:
@@ -151,6 +158,7 @@ class FinancialAna:
 
     # 解析模块
     def items_return(self, board, web_source, this_url):
+        print('解析模块')
 
         # 存储已经爬取过的模块
         def save_done_url(url):
@@ -199,16 +207,23 @@ class FinancialAna:
                 lambda x: hashlib.md5(str(x[0] + x[1] + x[2] + x[3]).encode('UTF-8')).hexdigest(), axis=1)
 
             # 入库存储
-            insert_table(board, df_list,
-                         {'ID': 'VARCHAR(255)', 'PK': 'ID'})
+            print('入库存储')
+            try:
+                insert_table(board, df_list,
+                             {'ID': 'VARCHAR(255)', 'PK': 'ID'})
+                # 更新url为已经爬取
+                save_done_url(this_url)
+            except TypeError as e :
+                print(df_list,e)
 
-            # 更新url为已经爬取
-            save_done_url(this_url)
+
+
 
         # 解析html
         parse_web()
 
 
 if __name__ == '__main__':
+    # print(show_tables())
     app = FinancialAna()
     app.board_crawl()

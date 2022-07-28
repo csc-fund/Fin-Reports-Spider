@@ -44,9 +44,9 @@ def query_to_df(cursor_query) -> pd.DataFrame:
 def excute_sql(sql, method: str = 'one', tups=None) -> pd.DataFrame:
     import mysql.connector
 
-    cnx = mysql.connector.connect(user='root', password='',
+    cnx = mysql.connector.connect(user='root', password='1111',
                                   host='127.0.0.1',
-                                  database='wechat_offacc')
+                                  database='financial_reports')
     cur = cnx.cursor(buffered=True)
 
     # 查询以外的sql

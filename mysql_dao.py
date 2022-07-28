@@ -8,9 +8,9 @@
 
 import pandas as pd
 from tools import __config as gv
-from log_rec.log import Logger
+# from log_rec.log import Logger
 
-logger = Logger(logname=gv.LOG_PATH + __name__ + '.log', loggername=__name__).getlog()
+# logger = Logger(logname=gv.LOG_PATH + __name__ + '.log', loggername=__name__).getlog()
 
 
 def df_to_tup(df):
@@ -33,7 +33,9 @@ def query_to_df(cursor_query) -> pd.DataFrame:
     if cursor_query is not None:
         # 转换为df重命名并返回
         dict_columns = {i: cursor_query.column_names[i] for i in range(len(cursor_query.column_names))}
+
         df_cur = pd.DataFrame(cursor_query)
+        # print(df_cur)
         df_cur.rename(columns=dict_columns, inplace=True)
         return df_cur
     else:
@@ -44,9 +46,9 @@ def query_to_df(cursor_query) -> pd.DataFrame:
 def excute_sql(sql, method: str = 'one', tups=None) -> pd.DataFrame:
     import mysql.connector
 
-    cnx = mysql.connector.connect(user='root', password='',
+    cnx = mysql.connector.connect(user='root',
                                   host='127.0.0.1',
-                                  database='wechat_offacc')
+                                  database='financial_reports')
     cur = cnx.cursor(buffered=True)
 
     # 查询以外的sql
@@ -66,7 +68,8 @@ def excute_sql(sql, method: str = 'one', tups=None) -> pd.DataFrame:
                 return query_to_df(cur)
 
     except mysql.connector.Error as e:
-        logger.error(e)
+        # logger.error(e)
+        print(e)
     finally:
         debug_str = gv.DEBUG_STR.format(str(cur.statement), str(cur.rowcount))
         # logging.info(debug_str)
@@ -74,7 +77,7 @@ def excute_sql(sql, method: str = 'one', tups=None) -> pd.DataFrame:
         # print(logging.logger.level)
         # print(logging.lo)
         # logger = Logger('log_file/SQL_Execute' + ".log", __name__).getlog()
-        logger.info(debug_str)
+        # logger.info(debug_str)
 
         if gv.DEBUG_MODE:
             pass
@@ -325,8 +328,8 @@ def insert_table(table_name: str, df_values: pd.DataFrame, type_dict: dict = Non
 
     if df_values.empty:
         # logging.logger.warning('INSERT {0} EMPTY DATAFRAME'.format(table_name))
-        print('\n')
-        logger.warn('INSERT {0} EMPTY DATAFRAME'.format(table_name))
+        print(' EMPTY DATAFRAME')
+        # logger.warn('INSERT {0} EMPTY DATAFRAME'.format(table_name))
         return
 
     if check_flag:
@@ -369,27 +372,13 @@ def update_table(table_name: str, df_values: pd.DataFrame, type_dict: dict = Non
         excute_sql(sql, 'many', tups)
 
     if df_values.empty:
-        logger.warn('UPDATE {0} EMPTY DATAFRAME'.format(table_name))
+        # logger.warn('UPDATE {0} EMPTY DATAFRAME'.format(table_name))
         return
     check_repair(table_name, df_values.columns.tolist(), type_dict)
     execute()
 
 
 #
-def test_demo():
-    """
-    :return:用于测试
-    :note:
-    """
-    from data_down import tushare_api
-    tu = tushare_api.TuShareGet('20120101', '20220601')
-    # 获取的指数
-    df_kline = pd.DataFrame(tu.get_index('000001.SH'))
-
-    insert_table('test_long', df_kline,
-                 {'PK': 'trade_date', 'ts_code': 'VARCHAR(40)', 'date_ts': 'INT', 'trade_date': 'INT'})
-
-    # update_table('test1', )
 
 
 # test_demo()
