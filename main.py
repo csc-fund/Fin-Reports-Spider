@@ -1,173 +1,205 @@
 import requests
 from urllib.parse import quote
-from settings import *
 from bs4 import BeautifulSoup
 import fake_useragent
 import sys
 import time
 import random
+import PyChromeDevTools
 from fake_useragent import UserAgent
 import csv
 import pandas as pd
 from mysql_dao import *
-import settings
+
 import hashlib
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 import selenium
 
+from selenium.webdriver.common.by import By
 
-class FinancialAna:
+from settings import *
+
+
+class FinancialSpider:
+    # 从配置文件初始化参数
     def __init__(self):
-        self.BASE_URl = 'http://data.10jqka.com.cn/ajax/{board}/date/{date}/board/ALL/field/enddate/order/desc/page/{page}/ajax/1/free/1/'
-        # 请求头
-        self.headers_list = headers
-        # 网页参数
-        self.MAX_PAGE = 0
+        # 设置
+        self.BASE_URl = BASE_URl  # 基本URL
+        self.BASE_COOKIES = BASE_COOKIES  # COOKIES
+        self.BOARD_LIST = BOARD_LIST  # 要爬取的栏目
+        self.DATE_LIST = DATE_LIST  # 要爬取的日期
+        self.MAX_PAGE = MAX_PAGE  # 最大的页数
+        self.MAX_COOKIE = MAX_COOKIE  # 最大COOKIE尝试次数
+        self.STATU_DICT = STATU_DICT  # 爬虫状态列表
 
-        # 栏目yypl异常,yjkb位置已经调整
-        self.board = ['yjkb', 'yjyg', 'yjgg', 'sgpx', 'ggjy']
-        # self.board = ['yjkb']
+        # 当前状态信息
+        self.BOARD_TRACK = ''  # 跟踪栏目
+        self.DATE_TRACK = ''  # 跟踪日期
+        self.PAGE_TRACK = ''  # 跟踪页数
+        self.URl_TRACK = ''  # 跟踪UR
+        self.CRAWL_STATU = None  # 当前爬虫的状态
+        self.UA_TRACK = None  # 当前的UA
+        self.COOKIES_TRACK = None  # 当前的COOKIES
+        self.REQUEST_TRACK = None  # 跟踪request
+
+        # 共用的Chrome对象
+        self.CHROME = PyChromeDevTools.ChromeInterface()
+        self.CHROME.Network.enable()
+        self.CHROME.Page.enable()
 
     # 按照栏目爬取
     def board_crawl(self):
-
-        # 生成时间序列
-        def get_date_list():
-            date_list = pd.date_range(start='20040301', end='20220301', freq='3M').tolist()
-            date_list = [str(i).replace(' 00:00:00', '') for i in date_list]
-            return date_list
+        # 存储已经爬取过的url
+        def save_url():
+            df_url = pd.DataFrame(data=[self.URl_TRACK], columns=['url'])
+            insert_table('finished_url', df_url, {'PK': 'url'})
 
         # 生成cookies验证
-        def get_cookies(url, ua):
+        def get_cookies():
+            for i in range(MAX_COOKIE):
+                # -------------驱动设置-------------#
+                options = webdriver.ChromeOptions()
+                # options.add_argument('--headless')
+                options.add_argument(
+                    'User-Agent="{0}"'.format(self.UA_TRACK))
+                options.add_argument('--disable-blink-features=AutomationControlled')
+                options.add_argument("--disable-extensions")
+                options.add_experimental_option('useAutomationExtension', False)
+                options.add_experimental_option("excludeSwitches", ["enable-automation"])
 
-            options = webdriver.ChromeOptions()
-            # options.add_argument('--headless')
-            options.add_argument(
-                'User-Agent="{0}"'.format(ua))
-            options.add_argument('--disable-blink-features=AutomationControlled')
-            options.add_argument("--disable-extensions")
-            options.add_experimental_option('useAutomationExtension', False)
-            options.add_experimental_option("excludeSwitches", ["enable-automation"])
+                # -------------驱动操作-------------#
+                # driver.maximize_window()
+                # driver.minimize_window()  # 将浏览器最大化显示
+                driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+                driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+                # driver.set_page_load_timeout(8)
+                driver.get(url=self.URl_TRACK)
 
-            # 设置中文
-            # 新版驱动设置
-            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-            # driver = webdriver.Chrome(executable_path='/Users/mac/Downloads/chromedriver', options=options)
-            driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-            # driver.maximize_window()
-            driver.get(url=url)
-            driver.implicitly_wait(2)
-            c = driver.get_cookies()
-            time.sleep(2)
+                # driver.implicitly_wait(5)
+                # 设置显式等待，超时时长最大为5s，每隔0.5s查找元素一次
+                element = WebDriverWait(driver, 10, 1).until(
+                    EC.presence_of_element_located((By.CLASS_NAME, 'J-ajax-table')))
+                print(element)
+                # time.sleep(2)
+                v = driver.get_cookie('v')
+                print(v)
+                # time.sleep(1111)
+                driver.delete_all_cookies()
+                driver.quit()
+                if v:
+                    print(v['value'])
+                    return v['value']
+                else:
+                    time.sleep(random.random() * 3)  # 设置延时
+                    print('重新获取')
+                    continue
+
+            # time.sleep(2)
             # # 获取cookie中的name和value,转化成requests可以使用的形式
-            cookies = {}
-            for cookie in c:
-                cookies[cookie['name']] = cookie['value']
-            time.sleep(1)
-            driver.quit()
-            # print(cookies)
-            return cookies['v']
+            # cookies = {}
+            # for cookie in c:
+            #     cookies[cookie['name']] = cookie['value']
+            # time.sleep(1)
 
-        # 获取request
-        def get_request(url):
+            # if cookies != {}:
+            #     break
+            # else:
+            #     print(c)
+            #     time.sleep(random.random() * 3)  # 设置延时
+            #     continue
+
+        # 新方法生成cookies验证
+        def get_cookies_V2():
+            while True:
+                # -------------访问URL-------------#
+                self.CHROME.Page.navigate(url=self.URl_TRACK)
+                self.CHROME.wait_event("Page.frameStoppedLoading", timeout=10)
+                time.sleep(2)
+
+                # -------------cookies-------------#
+                cookies, messages = self.CHROME.Network.getCookies()
+                for cookie in cookies["result"]["cookies"]:
+                    print("Value:", cookie["value"])
+                    return cookie["value"]
+
+        # 获取最大页面
+        def get_maxpage():
+            # -------------- 初始化状态参数 -------------- #
+            self.MAX_PAGE = 0  # 初始化当前日期的最大页数
+            self.CRAWL_STATU = self.STATU_DICT[0]
+            self.PAGE_TRACK = 0
+            self.REQUEST_TRACK = None
+            self.URl_TRACK = self.BASE_URl.format(board=self.BOARD_TRACK,
+                                                  date=self.DATE_TRACK,
+                                                  page=1)
+
+            # 随机生成UA
+            self.UA_TRACK = fake_useragent.UserAgent().random
+
+            # 使用获得的cookies爬取
+            self.REQUEST_TRACK = requests.get(url=self.URl_TRACK,
+                                              headers={'User-Agent': self.UA_TRACK,
+                                                       'Cookie': self.BASE_COOKIES.format(v=get_cookies_V2())},
+                                              timeout=5)
+
+            soup = BeautifulSoup(self.REQUEST_TRACK.content.decode('gbk'), 'lxml')
+
+            # 判断当前页面数据是否存在
+            data_selector = soup.select('.tc')
+            if data_selector and data_selector[0].text == '今日无数据':
+                self.MAX_PAGE = 0
+
+            #  存在则找页码page_info
+            else:
+                self.MAX_PAGE = 1
+                page_selector = soup.select('.page_info')
+                if page_selector:
+                    self.MAX_PAGE = int(page_selector[0].text.split('/')[1])
+
+            # 如果最大页码是0就抛出异常
+            assert self.MAX_PAGE >= 1
+
+        # 获取page中的request
+        def get_page():
+            # -------------- 初始化状态参数 -------------- #
+            self.CRAWL_STATU = self.STATU_DICT[1]
+            self.URl_TRACK = self.BASE_URl.format(board=self.BOARD_TRACK,
+                                                  date=self.DATE_TRACK,
+                                                  page=self.PAGE_TRACK)
+            self.REQUEST_TRACK = None
 
             # 查询要爬取的url是否完成
-            if url in select_table('finished_url', ['url'])['url'].tolist() and self.MAX_PAGE != 0:
+            if self.URl_TRACK in select_table('finished_url', ['url'])['url'].tolist():
+                print('已经存在')
+                return
 
-                return None
             # 降低速度
             time.sleep(random.random() * 5)  # 设置延时
 
-            # 请求头
-            ua = fake_useragent.UserAgent().random
-            try:
-                header = {'User-Agent': ua, 'Cookie': headers[0]['Cookie'].format(v=get_cookies(url, ua))}
-            # 网络问题
-            except KeyError as e:
-
-                print(e)
-                return None
+            # 随机生成UA
+            self.UA_TRACK = fake_useragent.UserAgent().random
 
             # 使用获得的cookies爬取
-            web_source = requests.get(url=url, headers=header, timeout=5)
+            self.REQUEST_TRACK = requests.get(url=self.URl_TRACK,
+                                              headers={'User-Agent': self.UA_TRACK,
+                                                       'Cookie': self.BASE_COOKIES.format(v=get_cookies_V2())},
+                                              timeout=5)
+            #     解析返回的requests
+            get_content()
 
-            if web_source.status_code == 200 and web_source is not None:
-                # 解析最大的页数
-                if self.MAX_PAGE == 0:
-                    soup = BeautifulSoup(web_source.content.decode('gbk'), 'lxml')
-                    try:
-                        self.MAX_PAGE = int(soup.select('.page_info')[0].text.split('/')[1])
-                        print('获取到页面总数:', url, soup.select('.page_info'))
-                    except IndexError:
-                        return None
-                        # self.MAX_PAGE = 0
-                # 更新过页面
-                else:
-                    return web_source
-            else:
-                # print(web_source.status_code)
-                return None
+        # 解析模块
+        def get_content():
+            # -------------- 初始化状态参数 -------------- #
+            self.CRAWL_STATU = self.STATU_DICT[2]
 
-        # 在栏目中循环
-        def get_board():
-            for board in self.board:
-
-
-                # 在日期中循环
-                for date in get_date_list():
-                    # 初始化栏目的最大页数
-                    self.MAX_PAGE = 0
-
-                    # 解析第1页更新页码
-                    try:
-                        get_request(self.BASE_URl.format(date=date, board=board, page=1))
-                    except Exception as e:
-                        print(e)
-                        continue
-
-                    # 更新页码后解析剩余的页
-                    for i in range(self.MAX_PAGE):
-
-                        # 待爬取url
-                        url = self.BASE_URl.format(date=date, board=board, page=(i + 1))
-                        print('正在爬取', url, board, date, i + 1)
-                        try:
-                            re = get_request(url)
-                        except Exception as e:
-                            print(e)
-
-                            continue
-
-                        # 如果不是状态错误,已经完成,就开始解析
-                        if re:
-                            try:
-                                self.items_return(board, re, url)
-                                # print(url)
-                            except AssertionError as e:
-                                print(e)
-                                continue
-
-                        else:
-                            # get出错的时候跳过
-                            continue
-
-        # 循环爬取栏目
-        get_board()
-
-    # 解析模块
-    def items_return(self, board, web_source, this_url):
-        print('解析模块')
-
-        # 存储已经爬取过的模块
-        def save_done_url(url):
-            df_url = pd.DataFrame(data=[url], columns=['url'])
-            insert_table('finished_url', df_url, {'PK': 'url'})
-            print('已入库')
-
-        def parse_web():
-            soup = BeautifulSoup(web_source.content.decode('gbk'), 'lxml')
+            soup = BeautifulSoup(self.REQUEST_TRACK.content.decode('gbk'), 'lxml')
 
             table = soup.select('.J-ajax-table')[0]
 
@@ -181,12 +213,12 @@ class FinancialAna:
             record_th = record_th[1:]
 
             # yjkb有2行,特殊处理
-            if board == 'yjkb':
+            if self.BOARD_TRACK == 'yjkb':
                 record_th = [v + str(record_th[:i].count(v) + 1) if record_th.count(v) > 1 else v for i, v in
                              enumerate(record_th)]
                 # 重新排序
                 record_th = record_th[0:3] + record_th[7:15] + record_th[3:7]
-            # print(record_th)
+
             # 表格内容
             df_list = pd.DataFrame()
             for tr in table.select('tbody tr'):
@@ -208,22 +240,51 @@ class FinancialAna:
 
             # 入库存储
             print('入库存储')
-            try:
-                insert_table(board, df_list,
-                             {'ID': 'VARCHAR(255)', 'PK': 'ID'})
-                # 更新url为已经爬取
-                save_done_url(this_url)
-            except TypeError as e :
-                print(df_list,e)
+            insert_table(self.BOARD_TRACK, df_list,
+                         {'ID': 'VARCHAR(255)', 'PK': 'ID'})
+            # 更新url为已经爬取
+            save_url()
 
+        # 在栏目中循环
+        def start_crawl():
+            # --------------在栏目中循环--------------#
+            for board in self.BOARD_LIST:
+                self.BOARD_TRACK = board  # 当前爬取的栏目
 
+                # --------------在日期中循环--------------#
+                for date in self.DATE_LIST:
+                    self.DATE_TRACK = date  # 当前爬取的日期
+                    try:
+                        # --------------获取最大页码--------------#
+                        get_maxpage()
+                    except AssertionError as e:  # 更新页码后没变
+                        print('更新后页面为:{}'.format(self.MAX_PAGE))
+                        continue
+                    except KeyError as e:  # 获取COOKIE失败
+                        print('获取COOKIE失败:{}'.format(self.COOKIES_TRACK))
+                        continue
 
+                    # --------------在页面中中循环--------------#
+                    for page in range(self.MAX_PAGE):
+                        self.PAGE_TRACK = page + 1  # 当前爬取的页面
+                        try:
+                            # --------------获取每个页面--------------#
+                            print(self.CRAWL_STATU, self.BOARD_TRACK, self.DATE_TRACK, self.PAGE_TRACK, self.MAX_PAGE)
 
-        # 解析html
-        parse_web()
+                            get_page()
+
+                        except KeyError as e:
+                            print('{}获取COOKIE失败:{}'.format(self.CRAWL_STATU, self.COOKIES_TRACK))
+                            continue
+                        # finally:
+                        #     # 跳到下一个页面
+                        #     continue
+
+        # 循环爬取
+        start_crawl()
 
 
 if __name__ == '__main__':
     # print(show_tables())
-    app = FinancialAna()
+    app = FinancialSpider()
     app.board_crawl()
