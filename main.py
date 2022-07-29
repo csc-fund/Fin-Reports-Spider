@@ -126,7 +126,8 @@ class FinancialSpider:
                 # -------------cookies-------------#
                 cookies, messages = self.CHROME.Network.getCookies()
                 for cookie in cookies["result"]["cookies"]:
-                    print("Value:", cookie["value"])
+                    # print("Value:", cookie["value"])
+                    self.COOKIES_TRACK = cookie["value"]
                     return cookie["value"]
 
         # 获取最大页面
@@ -177,7 +178,7 @@ class FinancialSpider:
 
             # 查询要爬取的url是否完成
             if self.URl_TRACK in select_table('finished_url', ['url'])['url'].tolist():
-                print('已经存在')
+                self.CRAWL_STATU = self.STATU_DICT[3]
                 return
 
             # 降低速度
@@ -197,11 +198,11 @@ class FinancialSpider:
         # 解析模块
         def get_content():
             # -------------- 初始化状态参数 -------------- #
-            self.CRAWL_STATU = self.STATU_DICT[2]
 
             soup = BeautifulSoup(self.REQUEST_TRACK.content.decode('gbk'), 'lxml')
 
             table = soup.select('.J-ajax-table')[0]
+            # print(table)
 
             # 表头
             record_th = []
@@ -239,11 +240,11 @@ class FinancialSpider:
                 lambda x: hashlib.md5(str(x[0] + x[1] + x[2] + x[3]).encode('UTF-8')).hexdigest(), axis=1)
 
             # 入库存储
-            print('入库存储')
             insert_table(self.BOARD_TRACK, df_list,
                          {'ID': 'VARCHAR(255)', 'PK': 'ID'})
             # 更新url为已经爬取
             save_url()
+            self.CRAWL_STATU = self.STATU_DICT[2]
 
         # 在栏目中循环
         def start_crawl():
@@ -260,25 +261,25 @@ class FinancialSpider:
                     except AssertionError as e:  # 更新页码后没变
                         print('更新后页面为:{}'.format(self.MAX_PAGE))
                         continue
-                    except KeyError as e:  # 获取COOKIE失败
-                        print('获取COOKIE失败:{}'.format(self.COOKIES_TRACK))
-                        continue
 
                     # --------------在页面中中循环--------------#
                     for page in range(self.MAX_PAGE):
                         self.PAGE_TRACK = page + 1  # 当前爬取的页面
+                        statu_str = "[ {} ] {} {} {} {} {} {}".format(self.CRAWL_STATU, self.BOARD_TRACK,
+                                                                      self.DATE_TRACK,
+                                                                      self.PAGE_TRACK, self.MAX_PAGE,
+                                                                      self.URl_TRACK,
+                                                                      self.COOKIES_TRACK)
                         try:
                             # --------------获取每个页面--------------#
-                            print(self.CRAWL_STATU, self.BOARD_TRACK, self.DATE_TRACK, self.PAGE_TRACK, self.MAX_PAGE)
-
                             get_page()
-
-                        except KeyError as e:
-                            print('{}获取COOKIE失败:{}'.format(self.CRAWL_STATU, self.COOKIES_TRACK))
+                            print(statu_str)
+                        except IndexError as e:
+                            print('IndexError失败,推测为网络原因{}'.format(statu_str))
                             continue
-                        # finally:
-                        #     # 跳到下一个页面
-                        #     continue
+                        except ConnectionError as e:
+                            print('ConnectionError推测为网络原因{}'.format(statu_str))
+                            continue
 
         # 循环爬取
         start_crawl()

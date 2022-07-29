@@ -12,7 +12,7 @@ MAX_COOKIE = 4  # COOKIE最大尝试次数
 MAX_TRY = 5  # 最大尝试次数
 FLAG = 0  # 用于标识，是否使用 url_omi() 函数
 
-STATU_DICT = {0: '获取页码长度', 1: '获取页面内容', 2: '解析数据入库'}
+STATU_DICT = {0: '获取页码长度', 1: '获取页面内容', 2: '解析数据入库', 3: '重复URL'}
 # ERROR_DICT={0:'页码页面'}
 # 初始链接
 BASE_URl = "http://data.10jqka.com.cn/ajax/{board}/date/{date}/board/ALL/field/enddate/order/desc/page/{page}/ajax/1/free/1/"
