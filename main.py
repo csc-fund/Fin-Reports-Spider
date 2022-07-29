@@ -245,7 +245,7 @@ class FinancialSpider:
             # 用前4列的字符串生成唯一的md5标识作为pk
             # yjkb有2行,特殊处理
             if self.BOARD_TRACK == 'yjyg':
-                df_list['ID'] = df_list.iloc[['股票代码', '公告日期']].apply(
+                df_list['ID'] = df_list[['股票代码', '公告日期']].apply(
                     lambda x: hashlib.md5(str(x['股票代码']+x['公告日期']).encode('UTF-8')).hexdigest(), axis=1)
 
             else:
