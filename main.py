@@ -306,3 +306,4 @@ if __name__ == '__main__':
     app = FinancialSpider()
     while True:
         app.board_crawl()
+
