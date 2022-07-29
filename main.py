@@ -220,6 +220,15 @@ class FinancialSpider:
                 # 重新排序
                 record_th = record_th[0:3] + record_th[7:15] + record_th[3:7]
 
+            # yjgg,特殊处理
+            elif self.BOARD_TRACK == 'yjgg':
+                record_th = [v + str(record_th[:i].count(v) + 1) if record_th.count(v) > 1 else v for i, v in
+                             enumerate(record_th)]
+                # 重新排序
+                record_th = record_th[0:3] + record_th[9:17] + record_th[3:9]
+
+
+
             # 表格内容
             df_list = pd.DataFrame()
             for tr in table.select('tbody tr'):
@@ -239,12 +248,19 @@ class FinancialSpider:
             df_list['ID'] = df_list.iloc[:, 0:4].apply(
                 lambda x: hashlib.md5(str(x[0] + x[1] + x[2] + x[3]).encode('UTF-8')).hexdigest(), axis=1)
 
+
             # 入库存储
-            insert_table(self.BOARD_TRACK, df_list,
-                         {'ID': 'VARCHAR(255)', 'PK': 'ID'})
-            # 更新url为已经爬取
-            save_url()
-            self.CRAWL_STATU = self.STATU_DICT[2]
+            if not df_list.empty:
+                insert_table(self.BOARD_TRACK, df_list,
+                             {'ID': 'VARCHAR(255)', 'PK': 'ID'})
+                # 更新url为已经爬取
+                save_url()
+                self.CRAWL_STATU = self.STATU_DICT[2]
+
+            else:
+                print('空')
+
+
 
         # 在栏目中循环
         def start_crawl():
