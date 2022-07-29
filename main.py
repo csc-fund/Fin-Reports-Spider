@@ -227,8 +227,6 @@ class FinancialSpider:
                 # 重新排序
                 record_th = record_th[0:3] + record_th[9:17] + record_th[3:9]
 
-
-
             # 表格内容
             df_list = pd.DataFrame()
             for tr in table.select('tbody tr'):
@@ -246,8 +244,7 @@ class FinancialSpider:
 
             # 用前4列的字符串生成唯一的md5标识作为pk
             df_list['ID'] = df_list.iloc[:, 0:4].apply(
-                lambda x: hashlib.md5(str(x[0] + x[1] + x[2] + x[3]).encode('UTF-8')).hexdigest(), axis=1)
-
+                lambda x: hashlib.md5(str(x[0] + x[1] + x[2]).encode('UTF-8')).hexdigest(), axis=1)
 
             # 入库存储
             if not df_list.empty:
@@ -259,8 +256,6 @@ class FinancialSpider:
 
             else:
                 print('空')
-
-
 
         # 在栏目中循环
         def start_crawl():
@@ -296,6 +291,8 @@ class FinancialSpider:
                         except ConnectionError as e:
                             print('ConnectionError推测为网络原因\n{}'.format(statu_str))
                             continue
+                        except AssertionError as e:  # 更新页码后没变
+                            print('AssertionErro\n{}'.format(statu_str))
                         except requests.exceptions.ReadTimeout as e:
                             print('HTTPConnectionPool\n{}'.format(statu_str))
                             continue
@@ -307,4 +304,5 @@ class FinancialSpider:
 if __name__ == '__main__':
     # print(show_tables())
     app = FinancialSpider()
-    app.board_crawl()
+    while True:
+        app.board_crawl()
