@@ -291,10 +291,13 @@ class FinancialSpider:
                             get_page()
                             print(statu_str)
                         except IndexError as e:
-                            print('IndexError失败,推测为网络原因{}'.format(statu_str))
+                            print('IndexError失败,推测为网络原因\n{}'.format(statu_str))
                             continue
                         except ConnectionError as e:
-                            print('ConnectionError推测为网络原因{}'.format(statu_str))
+                            print('ConnectionError推测为网络原因\n{}'.format(statu_str))
+                            continue
+                        except requests.exceptions.ReadTimeout as e:
+                            print('HTTPConnectionPool\n{}'.format(statu_str))
                             continue
 
         # 循环爬取
