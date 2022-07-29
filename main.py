@@ -243,8 +243,15 @@ class FinancialSpider:
             df_list.columns = record_th
 
             # 用前4列的字符串生成唯一的md5标识作为pk
-            df_list['ID'] = df_list.iloc[:, 0:4].apply(
-                lambda x: hashlib.md5(str(x[0] + x[1] + x[2]).encode('UTF-8')).hexdigest(), axis=1)
+            # yjkb有2行,特殊处理
+            if self.BOARD_TRACK == 'yjyg':
+                df_list['ID'] = df_list.iloc[['股票代码', '公告日期']].apply(
+                    lambda x: hashlib.md5(str(x['股票代码']+x['公告日期']).encode('UTF-8')).hexdigest(), axis=1)
+
+            else:
+                df_list['ID'] = df_list.iloc[:, 0:4].apply(
+                    lambda x: hashlib.md5(str(x[0] + x[1] + x[2]).encode('UTF-8')).hexdigest(), axis=1)
+
 
             # 入库存储
             if not df_list.empty:
@@ -295,6 +302,9 @@ class FinancialSpider:
                             print('AssertionErro\n{}'.format(statu_str))
                         except requests.exceptions.ReadTimeout as e:
                             print('HTTPConnectionPool\n{}'.format(statu_str))
+                            continue
+                        except Exception as e:
+                            print(e)
                             continue
 
         # 循环爬取
