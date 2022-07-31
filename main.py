@@ -370,11 +370,9 @@ class FinancialSpider:
                 print(e)
             finally:
                 # --------------输出状态--------------#
-                statu_str = "[ {} ] {} {} {} {}".format(self.CRAWL_STATU,
-                                                        self.DATE_TRACK,
-                                                        self.PAGE_TRACK,
-                                                        self.URl_TRACK,
-                                                        self.COOKIES_TRACK)
+                statu_str = "[ {} ] {} {} ".format(self.CRAWL_STATU,
+                                                   self.DATE_TRACK,
+                                                   self.COOKIES_TRACK)
                 print(statu_str)
 
 
