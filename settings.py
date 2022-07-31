@@ -21,7 +21,7 @@ BASE_URl = "http://data.10jqka.com.cn/ajax/{board}/date/{date}/board/ALL/field/e
 # 栏目yypl异常,yjkb位置已经调整
 # BOARD_LIST = ['yjkb', 'yjyg', 'yjgg', 'sgpx', 'ggjy']
 # BOARD_LIST = ['yjgg', 'yjkb', 'yjyg', ]
-BOARD_LIST = ['yjyg' ]
+BOARD_LIST = ['yjyg']
 DATE_LIST = [str(i).replace(' 00:00:00', '') for i in
              pd.date_range(start='20220301', end='20221231', freq='3M').tolist()]
 # 第一次爬取的 html 缺失的页面 的url 列表
