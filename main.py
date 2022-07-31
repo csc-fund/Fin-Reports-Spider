@@ -177,7 +177,7 @@ class FinancialSpider:
             self.REQUEST_TRACK = None
 
             # 查询要爬取的url是否完成
-            if self.URl_TRACK in select_table('finished_url', ['url'])['url'].tolist():
+            if (self.URl_TRACK in select_table('finished_url', ['url'])['url'].tolist()) and self.PAGE_TRACK != 1:
                 self.CRAWL_STATU = self.STATU_DICT[3]
                 return
 
@@ -246,12 +246,11 @@ class FinancialSpider:
             # yjkb有2行,特殊处理
             if self.BOARD_TRACK == 'yjyg':
                 df_list['ID'] = df_list[['股票代码', '公告日期']].apply(
-                    lambda x: hashlib.md5(str(x['股票代码']+x['公告日期']).encode('UTF-8')).hexdigest(), axis=1)
+                    lambda x: hashlib.md5(str(x['股票代码'] + x['公告日期']).encode('UTF-8')).hexdigest(), axis=1)
 
             else:
                 df_list['ID'] = df_list.iloc[:, 0:4].apply(
                     lambda x: hashlib.md5(str(x[0] + x[1] + x[2]).encode('UTF-8')).hexdigest(), axis=1)
-
 
             # 入库存储
             if not df_list.empty:
@@ -323,4 +322,3 @@ if __name__ == '__main__':
     app = FinancialSpider()
     while True:
         app.board_crawl()
-
