@@ -10,6 +10,7 @@ from fake_useragent import UserAgent
 import csv
 import pandas as pd
 from mysql_dao import *
+from datetime import datetime
 
 import hashlib
 
@@ -333,6 +334,8 @@ class FinancialSpider:
 
     # 按照栏目监控并更新
     def yjyg_update(self):
+        # -------------- 监控运行时间-------------- #
+        dt_start = datetime.now()
         # -------------- 初始化状态参数 -------------- #
         self.BOARD_TRACK = 'yjyg'
         self.PAGE_TRACK = 1
@@ -347,7 +350,11 @@ class FinancialSpider:
                                                   page=self.PAGE_TRACK)
             # -------------开始爬取-------------#
             try:
-                self.get_page()
+                if self.get_page():
+                    dt_end = datetime.now()
+                    dt_last = (dt_end - dt_start).seconds
+                    print('程序运行时间', dt_last)
+
             except self.RequestCodeError as e:
                 print(e)
             except ConnectionError as e:
