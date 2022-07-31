@@ -280,6 +280,13 @@ class FinancialSpider:
                         print('更新后页面为:{}'.format(self.MAX_PAGE))
                         continue
 
+                    except requests.exceptions.ReadTimeout as e:
+                        print('HTTPConnectionPool\n{}')
+                        continue
+                    except Exception as e:
+                        print(e)
+                        continue
+
                     # --------------在页面中中循环--------------#
                     for page in range(self.MAX_PAGE):
                         self.PAGE_TRACK = page + 1  # 当前爬取的页面
