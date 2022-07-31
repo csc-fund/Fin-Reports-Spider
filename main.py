@@ -37,6 +37,8 @@ class FinancialSpider:
         self.BOARD_LIST = BOARD_LIST  # 要爬取的栏目
         self.DATE_LIST = DATE_LIST  # 要爬取的日期
         self.MAX_PAGE = MAX_PAGE  # 最大的页数
+        self.MAX_GET = MAX_GET  # 最大GET次数
+        self.MAX_GETDELAY = MAX_GETDELAY  # 最大GET随机延迟
         self.MAX_COOKIE = MAX_COOKIE  # 最大COOKIE尝试次数
         self.STATU_DICT = STATU_DICT  # 爬虫状态列表
 
@@ -124,7 +126,7 @@ class FinancialSpider:
         self.CHROME.Page.navigate(url='')  # 重置一下cookies
         self.CHROME.Page.navigate(url=self.URl_TRACK)
         self.CHROME.wait_event("Page.frameStoppedLoading", timeout=10)
-        time.sleep(2)
+        time.sleep(1)
         # -------------获取cookies-------------#
         cookies, messages = self.CHROME.Network.getCookies()
         for cookie_dict in [cookie for cookie in cookies["result"]["cookies"]]:
@@ -141,27 +143,28 @@ class FinancialSpider:
                                               page=self.PAGE_TRACK)
         self.REQUEST_TRACK = None
 
-        # 降低速度
-        time.sleep(random.random() * 5)  # 设置延时
-
         # 随机生成UA
         self.UA_TRACK = fake_useragent.UserAgent().random
 
-        # 使用获得的cookies爬取
-        self.REQUEST_TRACK = requests.get(url=self.URl_TRACK,
-                                          headers={'User-Agent': self.UA_TRACK,
-                                                   'Cookie': self.BASE_COOKIES.format(v=self.get_cookies_V2())},
-                                          timeout=5)
-        # 如果状态码正常
-        if self.REQUEST_TRACK.status_code == 200:
-            #  解析返回的requests
-            return self.get_content()
+        # 多次获取
+        for i in range(self.MAX_GET):
+            # 降低速度
+            time.sleep(random.random() * self.MAX_GETDELAY)  # 设置延时
 
-        else:
-            # StatusCodeException =
-            # print('ERROR: ', self.REQUEST_TRACK.status_code)
-            raise self.RequestCodeError('获取requests错误', self.REQUEST_TRACK.status_code)
-            # return False
+            # 使用获得的cookies爬取
+            self.REQUEST_TRACK = requests.get(url=self.URl_TRACK,
+                                              headers={'User-Agent': self.UA_TRACK,
+                                                       'Cookie': self.BASE_COOKIES.format(v=self.get_cookies_V2())},
+                                              timeout=5)
+            # 如果状态码正常
+            if self.REQUEST_TRACK.status_code == 200:
+                #  解析返回的requests
+                return self.get_content()
+            else:
+                print('再次获取 {}/{}'.format(i + 1, self.MAX_GET))
+                continue
+
+        raise self.RequestCodeError('获取requests错误', self.REQUEST_TRACK.status_code)
 
     # 解析模块
     def get_content(self):

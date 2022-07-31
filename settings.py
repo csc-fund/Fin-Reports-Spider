@@ -3,9 +3,9 @@ import pandas as pd
 # 必要参数设置
 MAX_PAGE = 0  # 最大页数
 PAGE_TRACK = 1  # 追踪到了第几页
-MAX_GET = 1  # 获取最大尝试次数
+MAX_GET = 4  # 获取最大尝试次数
+MAX_GETDELAY = 1  # 最大GET随机延迟
 MAX_PARSE = 1  # 解析尝试最大次数
-MAX_CSV = 1  # 文件保存最大次数
 MAX_PROXY = 1  # 获取代理的最大次数
 MAX_START = 1  # MAX_*的初始值
 MAX_COOKIE = 4  # COOKIE最大尝试次数
