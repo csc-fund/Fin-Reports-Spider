@@ -23,7 +23,7 @@ BASE_URl = "http://data.10jqka.com.cn/ajax/{board}/date/{date}/board/ALL/field/e
 # BOARD_LIST = ['yjgg', 'yjkb', 'yjyg', ]
 BOARD_LIST = ['yjyg' ]
 DATE_LIST = [str(i).replace(' 00:00:00', '') for i in
-             pd.date_range(start='20000301', end='20211231', freq='3M').tolist()]
+             pd.date_range(start='20000301', end='20221231', freq='3M').tolist()]
 # 第一次爬取的 html 缺失的页面 的url 列表
 # 先进先出的列表
 PAGE_LIST = []
