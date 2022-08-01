@@ -42,6 +42,8 @@ class TushareSpider:
             # ----------------执行查询----------------#
             time.sleep(1)  # 1s一次可以
             self.df_ts = self.TuShare.query(api_name=api, period=period, )
+
+            # print(self.df_ts)
             if self.df_ts.empty:  # 判断为空
                 continue
 
@@ -55,6 +57,11 @@ class TushareSpider:
                     lambda x: hashlib.md5(str(x['ts_code'] + x['ann_date']).encode('UTF-8')).hexdigest(), axis=1)
 
             # 入库
+            self.df_ts.fillna('',inplace=True)
+            # self.df_ts=self.df_ts.where((self.df_ts.notna()),None)
+            # self.df_ts=self.df_ts.where(self.df_ts.applymap(lambda x:True if str(x)!='nan' else False),None)
+            # print(self.df_ts)
+
             self.SqlObj.insert_table(api, self.df_ts,
                                      {'INSERT_DATETIME': 'DATETIME NULL DEFAULT CURRENT_TIMESTAMP',
                                       'UPDATE_DATETIME': 'DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
@@ -102,15 +109,16 @@ class SpiderThead(threading.Thread):
         app.get_historical_data(self.datelist)
         app.SqlObj.close_cnx()
 
-
-if __name__ == '__main__':
+# 多下可能从
+def get_all_history():
     date_list = [str(i).replace(' 00:00:00', '') for i in
                  (pd.date_range(start='20000331', end='20221231', freq='3M').format(date_format="%Y%m%d"))]
-    # print(len(date_list))
-    date_list_1 = date_list[:20]
-    date_list_2 = date_list[20:40]
+    print(len(date_list))
+    date_list_1 = date_list[80:90]
+    date_list_2 = date_list[90:]
     date_list_3 = date_list[40:60]
     date_list_4 = date_list[60:80]
+
     # date_list_2 = date_list[20:30]
     # date_list_2 = date_list[30:40]
     # 创建新线程
@@ -128,4 +136,24 @@ if __name__ == '__main__':
     thread2.join()
     thread3.join()
     thread4.join()
+    print("退出主线程")
+
+if __name__ == '__main__':
+    date_list = [str(i).replace(' 00:00:00', '') for i in
+                 (pd.date_range(start='20000331', end='20221231', freq='3M').format(date_format="%Y%m%d"))]
+    print(len(date_list))
+
+
+    # date_list_2 = date_list[20:30]
+    # date_list_2 = date_list[30:40]
+    # 创建新线程
+    thread1 = SpiderThead(1, "Thread-1", 1, datelist=date_list)
+
+
+    # 开启新线程
+    thread1.start()
+
+
+    thread1.join()
+
     print("退出主线程")

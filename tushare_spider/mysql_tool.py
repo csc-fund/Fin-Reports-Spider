@@ -38,6 +38,7 @@ class MysqlDao:
     # 通用的执行语句
     def excute_sql(self, sql, method: str = 'one', tups=None) -> pd.DataFrame:
         self.sql = sql
+
         try:
             # 插入和更新
             if method == 'many':
@@ -56,6 +57,9 @@ class MysqlDao:
 
         except mysql.connector.Error as e:
             # logger.error(e)
+            # print(self.tup_todb)
+
+
             print('mysql.connector.Error', e)
 
     # 重命名sql查询的df
