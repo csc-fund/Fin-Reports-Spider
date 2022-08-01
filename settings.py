@@ -3,7 +3,7 @@ import pandas as pd
 # 必要参数设置
 MAX_PAGE = 0  # 最大页数
 PAGE_TRACK = 1  # 追踪到了第几页
-MAX_GET = 4  # 获取最大尝试次数
+MAX_GET = 2  # 获取最大尝试次数
 MAX_GETDELAY = 1  # 最大GET随机延迟
 MAX_PARSE = 1  # 解析尝试最大次数
 MAX_PROXY = 1  # 获取代理的最大次数
@@ -35,7 +35,11 @@ PROXY_POOL_API = "http://127.0.0.1:5555/random"
 BASE_COOKIES = 'Hm_lvt_60bad21af9c824a4a0530d5dbf4357ca=1658797633; Hm_lvt_78c58f01938e4d85eaf619eae71b4ed1=1658797633; Hm_lvt_f79b64788a4e377c608617fba4c736e2=1658797633; searchGuide=sg; Hm_lpvt_60bad21af9c824a4a0530d5dbf4357ca=1658818918; Hm_lpvt_78c58f01938e4d85eaf619eae71b4ed1=1658818918; Hm_lpvt_f79b64788a4e377c608617fba4c736e2=1658818918; v={v}'
 
 # 数据库部分
-MONGO_URL = ''
+MYSQL_HOST = 'rm-2ze1tizo5y2ws9k8fro.mysql.rds.aliyuncs.com'
+MYSQL_NAME='root'
+MYSQL_PASSWORD='Aa123456'
+
+
 db_struct = [{'ID': 'VARCHAR(100)',
               '股票代码': 'int', '股票简称': 'VARCHAR(10)', '业绩预告类型': 'VARCHAR(100)',
               '业绩预告摘要': 'VARCHAR(100)',

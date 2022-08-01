@@ -8,7 +8,7 @@
 
 import pandas as pd
 from tools import __config as gv
-
+from settings import *
 
 # from log_rec.log import Logger
 
@@ -48,8 +48,8 @@ def query_to_df(cursor_query) -> pd.DataFrame:
 def excute_sql(sql, method: str = 'one', tups=None) -> pd.DataFrame:
     import mysql.connector
 
-    cnx = mysql.connector.connect(user='root', password='',
-                                  host='127.0.0.1',
+    cnx = mysql.connector.connect(user='root', password=MYSQL_PASSWORD,
+                                  host=MYSQL_HOST,
                                   database='financial_reports')
     cur = cnx.cursor(buffered=True)
 

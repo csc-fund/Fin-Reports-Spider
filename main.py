@@ -6,9 +6,7 @@ import sys
 import time
 import random
 import PyChromeDevTools
-from fake_useragent import UserAgent
-import csv
-import pandas as pd
+
 from mysql_dao import *
 from datetime import datetime
 
