@@ -10,8 +10,7 @@ MYSQL_DATABASE = 'tushare'
 TUSHARE_VIPAPI = ['income_vip', 'balancesheet_vip', 'cashflow_vip', 'forecast_vip', 'express_vip', 'fina_mainbz_vip',
                   ]
 # 爬取的日期
-DATE_LIST = [str(i).replace(' 00:00:00', '') for i in
-             pd.date_range(start='20000301', end='20221231', freq='3M').tolist()]
+
 
 # 初始链接
 
