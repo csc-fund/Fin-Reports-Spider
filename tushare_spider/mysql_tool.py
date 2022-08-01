@@ -56,10 +56,7 @@ class MysqlDao:
 
         except mysql.connector.Error as e:
             # logger.error(e)
-            print('mysql.connector.Error')
-
-        finally:
-            print(self.cur.statement, self.cur.rowcount)
+            print('mysql.connector.Error', e)
 
     # 重命名sql查询的df
     def cur_to_df(self) -> pd.DataFrame:
@@ -105,7 +102,7 @@ class MysqlDao:
         def add_update_dict(column):
 
             # 从列名创建对应类型的字典
-            column_dict = {i: 'VARCHAR(255)' for i in column}
+            column_dict = {i: 'TEXT' for i in column}
 
             # 如果有自定义的字典
             if type_dict is not None:
@@ -165,7 +162,7 @@ class MysqlDao:
             table_list = self.show_tables()
             # 如果没有这个Table就创建一个
             if (table_list is None) or (check_table not in table_list):
-                column_dict = {i: 'VARCHAR(255)' for i in check_column}
+                column_dict = {i: 'TEXT' for i in check_column}
                 if type_dict is not None:
                     column_dict.update(type_dict)
                 self.create_table(check_table, column_dict)
