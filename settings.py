@@ -36,9 +36,9 @@ BASE_COOKIES = 'Hm_lvt_60bad21af9c824a4a0530d5dbf4357ca=1658797633; Hm_lvt_78c58
 
 # 数据库部分
 MYSQL_HOST = 'rm-2ze1tizo5y2ws9k8fro.mysql.rds.aliyuncs.com'
-MYSQL_NAME='root'
-MYSQL_PASSWORD='Aa123456'
-
+MYSQL_NAME = 'root'
+MYSQL_PASSWORD = 'Aa123456'
+MYSQL_DATABASE = 'financial_reports'
 
 db_struct = [{'ID': 'VARCHAR(100)',
               '股票代码': 'int', '股票简称': 'VARCHAR(10)', '业绩预告类型': 'VARCHAR(100)',

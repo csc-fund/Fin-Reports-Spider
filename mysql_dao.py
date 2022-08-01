@@ -10,9 +10,17 @@ import pandas as pd
 from tools import __config as gv
 from settings import *
 
+
 # from log_rec.log import Logger
 
 # logger = Logger(logname=gv.LOG_PATH + __name__ + '.log', loggername=__name__).getlog()
+
+class MysqlDao:
+    def __init__(self, host=MYSQL_HOST, userName=MYSQL_NAME, userPsd=MYSQL_PASSWORD, dataBase=MYSQL_DATABASE):
+        self.host = host
+        self.userName = userName
+        self.userPsd = userPsd
+        self.dataBase = dataBase
 
 
 def df_to_tup(df):
@@ -50,7 +58,7 @@ def excute_sql(sql, method: str = 'one', tups=None) -> pd.DataFrame:
 
     cnx = mysql.connector.connect(user='root', password=MYSQL_PASSWORD,
                                   host=MYSQL_HOST,
-                                  database='financial_reports')
+                                  database=MYSQL_DATABASE)
     cur = cnx.cursor(buffered=True)
 
     # 查询以外的sql
