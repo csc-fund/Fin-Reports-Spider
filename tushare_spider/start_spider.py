@@ -1,6 +1,6 @@
 import time
 
-from mysql_tool import MysqlDao
+from tushare_spider.mysql_tool import MysqlDao
 from tushare_spider.settings import *
 import tushare as ts
 import pandas as pd
@@ -121,9 +121,13 @@ class TushareSpider:
 
                     # 只保留前面100的行
                     self.df_ts = self.df_ts.loc[:100, :]
+                    self.df_ts.fillna('', inplace=True)
                     # 更新所有的新的表格
                     self.SqlObj.insert_table(table_name=self.TRACK_BOARD, df_values=self.df_ts)
                     self.SqlObj.update_table(table_name=self.TRACK_BOARD, df_values=self.df_ts)
+                    # ----------------输出状态----------------#
+                    print('[{}/{}] {} {}  '.format(self.SqlObj.cur.rowcount, self.df_ts.shape[0],
+                                                   self.TRACK_DATE, self.TRACK_BOARD, ))
 
 
 # 用于多线程处理
@@ -184,5 +188,4 @@ def get_now():
     app.SqlObj.close_cnx()
 
 
-if __name__ == '__main__':
-    get_now()
+
