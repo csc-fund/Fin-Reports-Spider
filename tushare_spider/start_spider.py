@@ -89,7 +89,44 @@ class TushareSpider:
                 # print(self.SqlObj.select_table('finished_date', ['date'])['date'].tolist())
                 self.get_financial_data(period=self.TRACK_DATE)
 
+    # 实时监控爬虫程序
+    def update_spider(self):
+        date_new = [str(i).replace(' 00:00:00', '') for i in
+                    (pd.date_range(start='20220331', end='20221231', freq='3M').format(date_format="%Y%m%d"))]
+        # ----------------在不同日期中循环----------------#
+        for date in date_new:
+            # ----------------初始化状态----------------#
+            self.TRACK_DATE = date
+            # 在不同板块中循环
+            # ----------------在不同版块中循环----------------#
+            for api in self.TUSHARE_VIPAPI:
+                # ----------------初始化状态----------------#
+                self.TRACK_BOARD = api
 
+                # ----------------执行查询----------------#
+                time.sleep(1)  # 1s一次可以
+                self.df_ts = self.TuShare.query(api_name=self.TRACK_BOARD, period=self.TRACK_DATE, )
+
+                if not self.df_ts.empty:  # 判断为空
+                    # 执行更新程序
+                    # 生成主键
+                    if self.TRACK_BOARD == 'fina_mainbz_vip':
+                        self.df_ts['ID'] = self.df_ts[['ts_code', 'end_date']].apply(
+                            lambda x: hashlib.md5(str(x['ts_code'] + x['end_date']).encode('UTF-8')).hexdigest(),
+                            axis=1)
+                    else:
+                        self.df_ts['ID'] = self.df_ts[['ts_code', 'ann_date']].apply(
+                            lambda x: hashlib.md5(str(x['ts_code'] + x['ann_date']).encode('UTF-8')).hexdigest(),
+                            axis=1)
+
+                    # 只保留前面100的行
+                    self.df_ts = self.df_ts.loc[:100, :]
+                    # 更新所有的新的表格
+                    self.SqlObj.insert_table(table_name=self.TRACK_BOARD, df_values=self.df_ts)
+                    self.SqlObj.update_table(table_name=self.TRACK_BOARD, df_values=self.df_ts)
+
+
+# 用于多线程处理
 class SpiderThead(threading.Thread):
     def __init__(self, threadID, name, delay, datelist):
         threading.Thread.__init__(self)
@@ -110,7 +147,7 @@ class SpiderThead(threading.Thread):
         app.SqlObj.close_cnx()
 
 
-# 多下可能从
+# 获取历史记录
 def get_all_history():
     date_list = [str(i).replace(' 00:00:00', '') for i in
                  (pd.date_range(start='20000331', end='20221231', freq='3M').format(date_format="%Y%m%d"))]
@@ -140,5 +177,12 @@ def get_all_history():
     print("退出主线程")
 
 
+# 实时监控
+def get_now():
+    app = TushareSpider()
+    app.update_spider()
+    app.SqlObj.close_cnx()
+
+
 if __name__ == '__main__':
-    print("退出主线程")
+    get_now()
