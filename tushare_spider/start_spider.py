@@ -57,7 +57,7 @@ class TushareSpider:
                     lambda x: hashlib.md5(str(x['ts_code'] + x['ann_date']).encode('UTF-8')).hexdigest(), axis=1)
 
             # 入库
-            self.df_ts.fillna('',inplace=True)
+            self.df_ts.fillna('', inplace=True)
             # self.df_ts=self.df_ts.where((self.df_ts.notna()),None)
             # self.df_ts=self.df_ts.where(self.df_ts.applymap(lambda x:True if str(x)!='nan' else False),None)
             # print(self.df_ts)
@@ -109,6 +109,7 @@ class SpiderThead(threading.Thread):
         app.get_historical_data(self.datelist)
         app.SqlObj.close_cnx()
 
+
 # 多下可能从
 def get_all_history():
     date_list = [str(i).replace(' 00:00:00', '') for i in
@@ -138,22 +139,6 @@ def get_all_history():
     thread4.join()
     print("退出主线程")
 
+
 if __name__ == '__main__':
-    date_list = [str(i).replace(' 00:00:00', '') for i in
-                 (pd.date_range(start='20000331', end='20221231', freq='3M').format(date_format="%Y%m%d"))]
-    print(len(date_list))
-
-
-    # date_list_2 = date_list[20:30]
-    # date_list_2 = date_list[30:40]
-    # 创建新线程
-    thread1 = SpiderThead(1, "Thread-1", 1, datelist=date_list)
-
-
-    # 开启新线程
-    thread1.start()
-
-
-    thread1.join()
-
     print("退出主线程")
