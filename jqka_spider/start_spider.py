@@ -225,6 +225,7 @@ class FinancialSpider:
                 lambda x: hashlib.md5(str(x[0] + x[1] + x[2]).encode('UTF-8')).hexdigest(), axis=1)
 
         # 入库存储
+
         if not df_list.empty:
             insert_table(self.BOARD_TRACK, df_list,
                          {'ID': 'VARCHAR(255)', 'PK': 'ID'})
