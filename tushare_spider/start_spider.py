@@ -183,9 +183,10 @@ def get_all_history():
 
 # 实时监控
 def get_now():
-    app = TushareSpider()
-    app.update_spider()
-    app.SqlObj.close_cnx()
+    try:
+        app = TushareSpider()
+        app.update_spider()
+        app.SqlObj.close_cnx()
 
-
-
+    except Exception as e:
+        print(e)

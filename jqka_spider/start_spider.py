@@ -194,6 +194,10 @@ class FinancialSpider:
             # 重新排序
             record_th = record_th[0:3] + record_th[9:17] + record_th[3:9]
 
+        # yjyg,特殊处理
+        elif self.BOARD_TRACK == 'yjyg':
+            pass
+
         # 表格内容
         df_list = pd.DataFrame()
         for tr in table.select('tbody tr'):
@@ -204,6 +208,7 @@ class FinancialSpider:
             df_list = pd.concat([df_list, pd.DataFrame(record).transpose()], axis=0, ignore_index=True)
 
         # 表头和内容要匹配
+
         assert len(record_th) == df_list.shape[1]
 
         # 重命名表头
@@ -334,11 +339,11 @@ class FinancialSpider:
         start_crawl()
 
     # 按照栏目监控并更新
-    def yjyg_update(self):
+    def board_update(self, board):
         # -------------- 监控运行时间-------------- #
         dt_start = datetime.now()
         # -------------- 初始化状态参数 -------------- #
-        self.BOARD_TRACK = 'yjyg'
+        self.BOARD_TRACK = board
         self.PAGE_TRACK = 1
 
         # --------------在日期中循环--------------#
@@ -368,9 +373,7 @@ class FinancialSpider:
                 print(e)
             finally:
                 # --------------输出状态--------------#
-                statu_str = "[ {} ] {} {} ".format(self.CRAWL_STATU,
-                                                   self.DATE_TRACK,
-                                                   self.COOKIES_TRACK)
+                statu_str = "[ {} ] {} {} {} ".format(self.CRAWL_STATU,
+                                                      self.DATE_TRACK, self.BOARD_TRACK,
+                                                      self.COOKIES_TRACK)
                 print(statu_str)
-
-
