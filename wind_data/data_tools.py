@@ -2,7 +2,7 @@ import pandas as pd
 
 from tools.mysql_tool import MysqlDao
 from wind_data.settings import *
-
+from tqdm.auto import tqdm
 import hashlib
 
 
@@ -52,16 +52,30 @@ class WindData:
             self.df_from_db = self.SqlObj.select_table(table_name, column)
 
             # ---------------- 转为短代码----------------#
-            self.df_from_db['CODE'] = self.df_from_db[code_column].apply(
-                lambda x: str(x).split('.')[0] if '.' in str(x) else x
-            )
-            # ---------------- 转为MD5----------------#
-            self.df_from_db['ID_MD5'] = self.df_from_db[[code_column, date_column]].apply(
-                lambda x: str(x[code_column]).strip() + str(x[date_column]).strip(), axis=1)
+            if table_name in ['ashareprofitnotice', ]:
+                self.df_from_db['CODE'] = self.df_from_db[code_column].apply(
+                    lambda x: str(x).split('.')[0]
+                )
+            else:
+                self.df_from_db['CODE'] = self.df_from_db[code_column]
 
-            self.df_from_db['ID_MD5'] = self.df_from_db['ID_MD5'].apply(
-                lambda x: hashlib.md5(x.encode('UTF-8')).hexdigest())
+            code_column = 'CODE'
+
+            # ---------------- 转为MD5----------------#
+            def get_md5(df_c):
+                raw_str = str(df_c[code_column]).strip() + str(df_c[date_column]).strip()
+                # md5_str = hashlib.md5(raw_str.encode('UTF-8')).hexdigest()
+                # md5_str = raw_str
+                return raw_str
+
+            tqdm.pandas(desc="GEN_MD5 {}".format(table_name), ncols=85)
+            self.df_from_db['ID_MD5'] = self.df_from_db[[code_column, date_column]].progress_apply(
+                lambda x: get_md5(x), axis=1
+            )
+
             # ---------------- 入库----------------#
+            self.df_from_db = self.df_from_db[['CODE', 'ID_MD5', id_column]]
+
             self.SqlObj.update_table(table_name, self.df_from_db, INSERT_STRUCT)
 
 
