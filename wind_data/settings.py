@@ -1,10 +1,7 @@
 # 数据库部分
-TABLE_YJYG = 'ashareprofitnotice'
-YJYG_COLUMN = ['S_INFO_WINDCODE', 'S_PROFITNOTICE_DATE']
+TABLE_LIST = {'ashareprofitnotice': ['S_INFO_CODE', 'S_PROFITNOTICE_DATE'],
+              'yjyg': ['股票代码', '公告日期']}
 
-# 要处理的数据库字段
-MD5_COLUMN = ['S_INFO_WINDCODE', 'S_PROFITNOTICE_DATE']
-MD5_NAME = 'ID_MD5'
-INSERT_STRUCT = {MD5_NAME: 'VARCHAR(255)', 'S_INFO_CODE': 'VARCHAR(50)',
-                 'S_PROFITNOTICE_DATE': 'DATE', 'PK': MD5_NAME}
-INSERT_TABLE = 'WIND_YJYG_COMPARE'
+INSERT_STRUCT = {'CODE': 'VARCHAR(20)', 'DATE': 'DATE',
+                 'ID_MD5': 'VARCHAR(100)',
+                 'PK': 'ID_MD5'}
