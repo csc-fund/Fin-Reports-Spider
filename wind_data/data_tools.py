@@ -12,10 +12,10 @@ class WindData:
         self.df_from_db = pd.DataFrame()
         self.table_name = ''
 
-    def add_code_column(self, table_name):
+    def add_code_column(self, table_name, code_column, id_column):
         self.df_from_db = self.SqlObj.select_table(table_name,
-                                                   ['S_INFO_WINDCODE', 'OBJECT_ID'])
-        self.df_from_db['S_INFO_CODE'] = self.df_from_db['S_INFO_WINDCODE'].apply(
+                                                   [code_column, id_column])
+        self.df_from_db['CODE_NUM'] = self.df_from_db[code_column].apply(
             lambda x: str(x).split('.')[0]
         )
         self.df_from_db = self.df_from_db[['S_INFO_WINDCODE', 'S_INFO_CODE', 'OBJECT_ID']]
@@ -45,6 +45,25 @@ class WindData:
         # self.select_table('ashareprofitnotice',[])
         # self.gen_compare_table(['CODE', 'DATE'])
 
+    def add_md5_column(self):
+        for table_name, column in TABLE_LIST.items():
+            # ---------------- 初始化---------------#
+            code_column, date_column, id_column = column[0], column[1], column[2]
+            self.df_from_db = self.SqlObj.select_table(table_name, column)
+
+            # ---------------- 转为短代码----------------#
+            self.df_from_db['CODE'] = self.df_from_db[code_column].apply(
+                lambda x: str(x).split('.')[0] if '.' in str(x) else x
+            )
+            # ---------------- 转为MD5----------------#
+            self.df_from_db['ID_MD5'] = self.df_from_db[[code_column, date_column]].apply(
+                lambda x: str(x[code_column]).strip() + str(x[date_column]).strip(), axis=1)
+
+            self.df_from_db['ID_MD5'] = self.df_from_db['ID_MD5'].apply(
+                lambda x: hashlib.md5(x.encode('UTF-8')).hexdigest())
+            # ---------------- 入库----------------#
+            self.SqlObj.update_table(table_name, self.df_from_db, INSERT_STRUCT)
+
 
 # WindData().add_code_column('ashareprofitnotice')
-WindData().create_compare_table()
+WindData().add_md5_column()
