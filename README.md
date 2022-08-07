@@ -10,4 +10,6 @@ HOST:`rm-2ze1tizo5y2ws9k8fro.mysql.rds.aliyuncs.com` 用户名:`root` 密码:`Aa
 
 ## 数据核验报表
 
-<iframe title="报表" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiODJhNmE4ZTAtMWEwZS00N2E5LWIyZTgtYWM5NThkYTNlOTI2IiwidCI6IjhhMmM2NzRhLWE5OGMtNDg3Yy04YWEwLTIxNTAzYjZkOTVhMiIsImMiOjEwfQ%3D%3D&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>
+
+
+[这里](https://app.powerbi.com/view?r=eyJrIjoiODJhNmE4ZTAtMWEwZS00N2E5LWIyZTgtYWM5NThkYTNlOTI2IiwidCI6IjhhMmM2NzRhLWE5OGMtNDg3Yy04YWEwLTIxNTAzYjZkOTVhMiIsImMiOjEwfQ%3D%3D&pageName=ReportSection)
